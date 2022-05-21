@@ -12,6 +12,7 @@ The example below uses Swift Concurrency, but the http client also support a com
 
 ### Define the request
 
+```swift
     /// Define a request to retrieve users.
     struct GetUsersRequest: Request {
 
@@ -29,9 +30,11 @@ The example below uses Swift Concurrency, but the http client also support a com
             let email: String
         }
     } 
+```
 
 ### Setup the http client and perform the request
 
+```swift
         /// Setup base url for and initialize the http client.
         let baseUrl = URL(string: "https://some.api.com")!
         let client = HttpClient(baseUrl: baseUrl)
@@ -39,3 +42,4 @@ The example below uses Swift Concurrency, but the http client also support a com
         /// Ask the http client to perform a specific request.
         let request = GetUsersRequest()
         let users = try await client.perform(request: request)
+```
