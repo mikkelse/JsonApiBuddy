@@ -17,7 +17,7 @@ public protocol Request {
     associatedtype ResponseError: JsonDecodable
 
     /// The http method of the request. The default implementation is .get.
-    var httpMethod: BBApiRequestHttpMethod { get }
+    var httpMethod: HttpMethod { get }
 
     /// The list of headers to set for the request. The default implementation is an empty list.
     var headerFields: [String: String] { get }
@@ -36,14 +36,14 @@ public protocol Request {
 public extension Request {
     typealias ResponseObject = EmptyBody
     typealias ResponseError = EmptyBody
-    var httpMethod: BBApiRequestHttpMethod { .get }
+    var httpMethod: HttpMethod { .get }
     var headerFields: [String: String] { [:] }
     var queryItems: [URLQueryItem] { [] }
     var httpBody: JsonEncodable? { nil }
 }
 
 /// An enum representing the supported http methods.
-public enum BBApiRequestHttpMethod: String {
+public enum HttpMethod: String {
 
     /// The requst is a GET request.
     case get = "GET"
