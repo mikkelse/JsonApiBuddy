@@ -13,33 +13,33 @@ The example below uses Swift Concurrency, but the http client also support a com
 ### Define the request
 
 ```swift
-    /// Define a request to retrieve users.
-    struct GetUsersRequest: Request {
+/// Define a request to retrieve users.
+struct GetUsersRequest: Request {
 
-        /// Setup  the expected response object. In this case an array of users.
-        typealias ResponseObject = [User]
+    /// Setup  the expected response object. In this case an array of users.
+    typealias ResponseObject = [User]
 
-        /// Setup the path for the request. Path components will be appended the base url of the http client.
-        let pathComponents = ["users"]
+    /// Setup the path for the request. Path components will be appended the base url of the http client.
+    let pathComponents = ["users"]
 
-        /// Define request specific models.
-        struct User: JsonDecodable {
-            let id: Int
-            let firstName: String
-            let lastName: String
-            let email: String
-        }
-    } 
+    /// Define request specific models.
+    struct User: JsonDecodable {
+        let id: Int
+        let firstName: String
+        let lastName: String
+        let email: String
+    }
+} 
 ```
 
 ### Setup the http client and perform the request
 
 ```swift
-        /// Setup base url for and initialize the http client.
-        let baseUrl = URL(string: "https://some.api.com")!
-        let client = HttpClient(baseUrl: baseUrl)
+/// Setup base url for and initialize the http client.
+let baseUrl = URL(string: "https://some.api.com")!
+let client = HttpClient(baseUrl: baseUrl)
 
-        /// Ask the http client to perform a specific request.
-        let request = GetUsersRequest()
-        let users = try await client.perform(request: request)
+/// Ask the http client to perform a specific request.
+let request = GetUsersRequest()
+let users = try await client.perform(request: request)
 ```
