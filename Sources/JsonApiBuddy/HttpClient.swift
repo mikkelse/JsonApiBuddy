@@ -39,7 +39,7 @@ public extension HttpClient {
         return task
     }
 
-    @available(iOS 13.0.0, *)
+    @available(iOS 13.0.0, *) @discardableResult
     func perform<R: Request>(request: R) async throws -> R.ResponseObject {
 
         let sessionTask = SessionTask()

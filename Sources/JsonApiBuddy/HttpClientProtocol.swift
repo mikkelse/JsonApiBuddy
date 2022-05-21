@@ -57,6 +57,6 @@ public protocol HttpClientProtocol {
     /// - parameter request: The request for the http client to perform.
     /// - throws: Throws a HttpClientError if performing the request fails.
     /// - returns: Returns Request.ResponseObject if performing the request succeeds.
-    @available(iOS 13, *) @discardableResult
+    @available(iOS 13, *)
     func perform<R: Request>(request: R) async throws -> R.ResponseObject
 }
