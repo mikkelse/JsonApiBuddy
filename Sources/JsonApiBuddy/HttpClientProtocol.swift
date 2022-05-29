@@ -11,13 +11,13 @@ import Foundation
 public struct ResponseError<R: JsonDecodable> {
 
     /// The http status code of the response.
-    let httpStatusCode: Int
+    public let httpStatusCode: Int
 
     /// The path of the request resulting in the response.
-    let requestPath: String
+    public let requestPath: String
 
     /// The deserialized error response body reported by the api.
-    let responseBody: R
+    public let responseBody: R
 }
 
 /// An enum representing the different errors that can be result from performing a request.
