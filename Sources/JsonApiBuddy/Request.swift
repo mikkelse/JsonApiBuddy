@@ -20,9 +20,9 @@ public protocol Request {
     var httpMethod: HttpMethod { get }
 
     /// The list of headers to set for the request. The default implementation is an empty list.
-    var headerFields: [String: String] { get }
+    var headerFields: [String: String] { get set }
 
-    /// The individual components making up the path of the request. I.e.: [path, to, resource]
+    /// The individual components making up the path of the request. I.e.: [path, to, resource]. The default implementation is an empty path.
     var pathComponents: [String] { get }
 
     /// An list of query items to add to the request. The default implementation is an empty list.
@@ -38,6 +38,7 @@ public extension Request {
     typealias ResponseError = EmptyBody
     var httpMethod: HttpMethod { .get }
     var headerFields: [String: String] { [:] }
+    var pathComponents: [String] { [] }
     var queryItems: [URLQueryItem] { [] }
     var httpBody: JsonEncodable? { nil }
 }
