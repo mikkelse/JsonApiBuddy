@@ -19,8 +19,8 @@ public protocol Request {
     /// The http method of the request. The default implementation is .get.
     var httpMethod: HttpMethod { get }
 
-    /// The list of headers to set for the request. The default implementation is an empty list.
-    var headerFields: [String: String] { get set }
+    /// The headers to set for the request. The default implementation is an empty dictionary.
+    var headerFields: [String: String] { get }
 
     /// The individual components making up the path of the request. I.e.: [path, to, resource]. The default implementation is an empty path.
     var pathComponents: [String] { get }
