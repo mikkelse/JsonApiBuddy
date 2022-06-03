@@ -28,5 +28,6 @@ public extension JsonDecodable {
     }
 }
 
+extension String: JsonDecodable {}
 extension Array: JsonDecodable where Element: JsonDecodable {}
 extension Dictionary: JsonDecodable where Key: JsonDecodable, Value: JsonDecodable {}

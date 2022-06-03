@@ -27,5 +27,6 @@ public extension JsonEncodable {
     }
 }
 
+extension String: JsonEncodable {}
 extension Array: JsonEncodable where Element: JsonEncodable {}
 extension Dictionary: JsonEncodable where Key: JsonEncodable, Value: JsonEncodable {}
