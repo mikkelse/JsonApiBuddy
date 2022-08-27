@@ -23,7 +23,7 @@ public extension JsonDecodable {
 
     static func jsonDecode(json data: Data, dateStrategy: JSONDecoder.DateDecodingStrategy = .iso8601) throws -> Self {
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
+        decoder.dateDecodingStrategy = dateStrategy
         return try decoder.decode(Self.self, from: data)
     }
 }
