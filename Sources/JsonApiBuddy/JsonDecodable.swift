@@ -10,22 +10,28 @@ import Foundation
 /// A protocol defining an internface for decoding an entity from json data.
 public protocol JsonDecodable: Decodable {
 
+    /// The date decding strategy to use for the decodable.
+    ///
+    /// The default implementation uses .iso8601. Override implementation for custom formats.
+    static var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy { get }
+    
     /// Decode the entitiy from the given JjsonSON data.
     ///
     /// - parameter data: The json data to decode the entity from.
-    /// - parameter dateStrategy: The decoding strategy to use for decoding dates. Defaults to .iso8601.
     /// - throws: JSONDecoder errors.
     /// - returns: The entity decoded from the given json data.
-    static func jsonDecode(json data: Data, dateStrategy: JSONDecoder.DateDecodingStrategy) throws -> Self
+    static func jsonDecode(json data: Data) throws -> Self
 }
 
 public extension JsonDecodable {
 
-    static func jsonDecode(json data: Data, dateStrategy: JSONDecoder.DateDecodingStrategy = .iso8601) throws -> Self {
+    static func jsonDecode(json data: Data) throws -> Self {
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = dateStrategy
+        decoder.dateDecodingStrategy = dateDecodingStrategy
         return try decoder.decode(Self.self, from: data)
     }
+    
+    static var dateDecodingStrategy: JSONDecoder.DateDecodingStrategy { .iso8601 }
 }
 
 extension String: JsonDecodable {}

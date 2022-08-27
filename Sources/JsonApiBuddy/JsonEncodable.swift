@@ -9,20 +9,26 @@ import Foundation
 
 /// A protocol defining an interface for encoding an entity to json data.
 public protocol JsonEncodable: Encodable {
+    
+    /// The date encoding strategy to use for the encodable.
+    ///
+    /// The default implementation uses .iso8601. Override implementation for custom formats.
+    var dateEncodingStrategy: JSONEncoder.DateEncodingStrategy { get }
 
     /// Encode the entitiy to json data.
     ///
-    /// - parameter dateStrategy: The encoding strategy to use for dates. Defaults to .iso8601.
     /// - throws: JSONEncoder errors.
     /// - returns: The entity encoded as json data..
-    func jsonEncode(dateStrategy: JSONEncoder.DateEncodingStrategy) throws -> Data
+    func jsonEncode() throws -> Data
 }
 
 public extension JsonEncodable {
+    
+    var dateEncodingStrategy: JSONEncoder.DateEncodingStrategy { .iso8601 }
 
-    func jsonEncode(dateStrategy: JSONEncoder.DateEncodingStrategy = .iso8601) throws -> Data {
+    func jsonEncode() throws -> Data {
         let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = dateStrategy
+        encoder.dateEncodingStrategy = dateEncodingStrategy
         return try encoder.encode(self)
     }
 }
